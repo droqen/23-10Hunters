@@ -1,0 +1,6 @@
+[package]
+id = "qn6cqy4tlzhetcrphag23lzguiif7sby"
+name = "chicken"
+version = "0.0.1"
+content = { type = "Playable" }
+ambient_version = "0.3.0-nightly-2023-09-27"

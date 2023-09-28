@@ -1,0 +1,17 @@
+
+# [[pipelines]]
+# sources = ["Muscle Chicken with T-Pose.fbx", "material_chicken.glb"]
+# type = "Models"
+
+# [[pipelines.transforms]]
+# type = "RotateZ"
+# deg = -90.0
+
+
+# [[pipelines]]
+# sources = ["Chicken Jog.fbx"]
+# type = "Models"
+
+[[pipelines]]
+sources = []
+type = "Models"
