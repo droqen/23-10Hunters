@@ -31,10 +31,7 @@ pub fn main() {
         .with(
             model_from_url(),
             packages::this::assets::url("chicken_fbx_to_glb.glb"),
-        )
-        .with(
-            model_from_url(),
-            packages::this::assets::url("chicken_fbx_to_glb.glb"),
+            // packages::this::assets::url("Muscle Chicken with T-Pose.fbx"),
         )
         .spawn();
 
