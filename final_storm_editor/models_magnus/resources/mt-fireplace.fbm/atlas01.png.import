@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b44sdn1apynk4"
-path="res://.godot/imported/atlas01.png-2da556440cf7747318c275835c82f596.ctex"
+uid="uid://bt7sv1cgs7e7"
+path="res://.godot/imported/atlas01.png-4d921043de2b66f0db00c7cdec8ca8be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models_magnus/mt-fireplace-dead.fbm/atlas01.png"
-dest_files=["res://.godot/imported/atlas01.png-2da556440cf7747318c275835c82f596.ctex"]
+source_file="res://models_magnus/resources/mt-fireplace.fbm/atlas01.png"
+dest_files=["res://.godot/imported/atlas01.png-4d921043de2b66f0db00c7cdec8ca8be.ctex"]
 
 [params]
 
