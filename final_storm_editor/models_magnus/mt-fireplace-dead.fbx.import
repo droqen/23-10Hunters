@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dn7m3cl2i0i8"
-path="res://.godot/imported/mt-fireplace01.fbx-d49239df46299200d1f732f042273df3.scn"
+uid="uid://bcj4ygqr0jau7"
+path="res://.godot/imported/mt-fireplace-dead.fbx-890e9d56ad72d602ea7e6c2813880f66.scn"
 
 [deps]
 
-source_file="res://models_magnus/mt-fireplace01.fbx"
-dest_files=["res://.godot/imported/mt-fireplace01.fbx-d49239df46299200d1f732f042273df3.scn"]
+source_file="res://models_magnus/mt-fireplace-dead.fbx"
+dest_files=["res://.godot/imported/mt-fireplace-dead.fbx-890e9d56ad72d602ea7e6c2813880f66.scn"]
 
 [params]
 
