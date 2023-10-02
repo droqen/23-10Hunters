@@ -1,0 +1,11 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://brv2yt8b015pv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vlo3x"]
+
+[sub_resource type="Sky" id="Sky_bh7g5"]
+sky_material = SubResource("ProceduralSkyMaterial_vlo3x")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_bh7g5")
+fog_enabled = true

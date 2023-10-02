@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvp3slow4hlnv"]
+
+[ext_resource type="Script" path="res://00_plane_roamer/Roamer.gd" id="1_i13jg"]
+[ext_resource type="Script" path="res://00_plane_roamer/pivot.gd" id="2_ubgyh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kkagd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fqvst"]
+
+[node name="Roamer3rdPerson" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0213382, 1.19076, 0.0039227)
+script = ExtResource("1_i13jg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_kkagd")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_fqvst")
+
+[node name="pivot" type="Node3D" parent="."]
+script = ExtResource("2_ubgyh")
+
+[node name="Camera3D" type="Camera3D" parent="pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0213382, 1.29786, 4.29301)
+current = true

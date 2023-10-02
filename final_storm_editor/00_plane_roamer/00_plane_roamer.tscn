@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://spjjhfd8x5df"]
+
+[ext_resource type="PackedScene" uid="uid://cvp3slow4hlnv" path="res://00_plane_roamer/roamer_3rd_person.tscn" id="1_qtsp8"]
+[ext_resource type="PackedScene" uid="uid://c60sid1hosd0h" path="res://01_dans_bldgs/models/MSH_Building_Hole_001.glb" id="3_phl3a"]
+[ext_resource type="PackedScene" uid="uid://cjesbtux2jbjc" path="res://01_dans_bldgs/models/MSH_Building_Hole_002.glb" id="4_5kagl"]
+[ext_resource type="PackedScene" uid="uid://btch7k5usguog" path="res://01_dans_bldgs/models/MSH_Building_Hole_003.glb" id="5_bg57o"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_uvia2"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kljj1"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7gqwr"]
+size = Vector3(1, 5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wenf5"]
+size = Vector3(1, 5, 1)
+
+[node name="00_plane_roamer" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.26522, 0.964188, 0, -0.964188, -0.26522, 0, 0, 0)
+
+[node name="Roamer3rdPerson" parent="." instance=ExtResource("1_qtsp8")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_uvia2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_kljj1")
+skeleton = NodePath("../..")
+
+[node name="pillars" type="Node3D" parent="."]
+
+[node name="pillar template" type="StaticBody3D" parent="pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.198096, 1.46996, -6.09852)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pillars/pillar template"]
+shape = SubResource("BoxShape3D_7gqwr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pillars/pillar template"]
+mesh = SubResource("BoxMesh_wenf5")
+skeleton = NodePath("../../..")
+
+[node name="pillar template2" type="StaticBody3D" parent="pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4841, -1.83197, -5.35988)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pillars/pillar template2"]
+shape = SubResource("BoxShape3D_7gqwr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pillars/pillar template2"]
+mesh = SubResource("BoxMesh_wenf5")
+skeleton = NodePath("../../..")
+
+[node name="pillar template3" type="StaticBody3D" parent="pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.981451, -0.331117, -6.58504)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pillars/pillar template3"]
+shape = SubResource("BoxShape3D_7gqwr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pillars/pillar template3"]
+mesh = SubResource("BoxMesh_wenf5")
+skeleton = NodePath("../../..")
+
+[node name="MSH_Building_Hole_001" parent="." instance=ExtResource("3_phl3a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6535, 0, -14.1972)
+
+[node name="MSH_Building_Hole_002" parent="." instance=ExtResource("4_5kagl")]
+transform = Transform3D(0.388352, 0, -0.921511, 0, 1, 0, 0.921511, 0, 0.388352, 22.181, 0, -23.6528)
+
+[node name="MSH_Building_Hole_003" parent="." instance=ExtResource("5_bg57o")]
+transform = Transform3D(0.316047, 0, -0.948744, 0, 1, 0, 0.948744, 0, 0.316047, 32.939, 0, -3.99121)

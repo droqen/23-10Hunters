@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://cn1wwh8o1p6ys"]
+
+[ext_resource type="PackedScene" uid="uid://c2hdj36ghi54q" path="res://13_MagnusRock/cliffmesh_combined.glb" id="1_0w4tu"]
+[ext_resource type="PackedScene" uid="uid://23fkafeipq51" path="res://13_MagnusRock/cliffmesh_rock.glb" id="2_bnc6j"]
+[ext_resource type="PackedScene" uid="uid://cvp3slow4hlnv" path="res://00_plane_roamer/roamer_3rd_person.tscn" id="3_e3kbb"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_foy0d"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wnb2o"]
+size = Vector2(9999, 9999)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vqmnj"]
+
+[sub_resource type="Sky" id="Sky_tgj7f"]
+sky_material = SubResource("ProceduralSkyMaterial_vqmnj")
+
+[sub_resource type="Environment" id="Environment_cw8jr"]
+background_mode = 2
+sky = SubResource("Sky_tgj7f")
+
+[node name="magnus-rock-scene" type="Node3D"]
+
+[node name="cliffmesh_combined" parent="." instance=ExtResource("1_0w4tu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2146, 0, -4.83605)
+
+[node name="cliffmesh_combined2" parent="." instance=ExtResource("1_0w4tu")]
+transform = Transform3D(-0.75022, 0, 1.09473, 0, 1.32712, 0, -1.09473, 0, -0.75022, -17.143, 0, 6.51054)
+
+[node name="cliffmesh_rock" parent="." instance=ExtResource("2_bnc6j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2678, -3.8147e-06, 14.4494)
+
+[node name="floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("WorldBoundaryShape3D_foy0d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+mesh = SubResource("PlaneMesh_wnb2o")
+
+[node name="Roamer3rdPerson" parent="." instance=ExtResource("3_e3kbb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23622, 1.43814, 1.45678)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cw8jr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.819782, 0.572675, 0, -0.572675, 0.819782, 0, 0, 0)
+shadow_enabled = true
