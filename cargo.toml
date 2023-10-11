@@ -1,0 +1,12 @@
+[workspace]
+members = [
+    "00valentino",
+]
+resolver = "2"
+
+[workspace.package]
+rust-version = "1.70.0"
+version = "0.3.0"
+
+[workspace.dependencies]
+ambient_api = { git = "https://github.com/AmbientRun/Ambient.git", branch = "main" }
