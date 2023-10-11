@@ -1,0 +1,12 @@
+[package]
+id = "mjqb42fkii74pedh5uv7gzju37taql2e"
+name = "Valentino"
+version = "0.0.1"
+content = { type = "Playable" }
+ambient_version = "0.3.0"
+
+[dependencies]
+droplet = { deployment = "6eKOGLJmxraCGhZYriCLD7" }
+
+[components]
+is_spark = { type = "Empty" }
