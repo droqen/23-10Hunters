@@ -19,6 +19,8 @@ use ambient_api::{
 use packages::{
     cubeline::components::{cubeline_a, cubeline_b, cubeline_width},
     flag::components::{flaginertia, flaglerp, flaglin, flagpole, flagpole_target_offset},
+    this::components::left_stick,
+    this::messages::LeftStick,
 };
 
 #[main]
@@ -82,11 +84,10 @@ fn spawn_test1_simple() {
 }
 
 fn spawn_test2_orb_body() {
-    let ball_goto = Entity::new().with(translation(), vec3(10., 0., 0.)).spawn();
+    let ball_goto = Entity::new().with(translation(), vec3(0., 0., 1.)).spawn();
     let ball_head = make_ball(0.5)
-        .with(translation(), vec3(0., 0., 1.))
+        .with(translation(), pos_of(ball_goto))
         .with(flagpole(), ball_goto)
-        .with(flagpole_target_offset(), vec3(0., 0., 1.))
         .with(flaglin(), 0.05)
         .with(flaglerp(), 0.01)
         .with(flaginertia(), 0.1)
@@ -102,10 +103,18 @@ fn spawn_test2_orb_body() {
         .with(cube(), ())
         .with(cubeline_width(), 0.1)
         .spawn();
+    LeftStick::subscribe(|_src, msg| {
+        entity::add_component(packages::this::entity(), left_stick(), msg.left_stick);
+    });
     Frame::subscribe(move |_| {
-        entity::mutate_component(ball_head, translation(), |pos| {
-            pos.x += 0.01;
-        });
+        entity::add_component(
+            ball_goto,
+            translation(),
+            pos_of(ball_head)
+                + entity::get_component(packages::this::entity(), left_stick())
+                    .unwrap_or_default()
+                    .extend(0.),
+        );
         entity::add_components(
             ball_line,
             Entity::new()

@@ -9,3 +9,9 @@ ambient_version = "0.3.0"
 droplet = { deployment = "6eKOGLJmxraCGhZYriCLD7" }
 cubeline = { path = "../../subpax/cubeline" }
 flag = { path = "../../subpax/flag" }
+
+[components]
+left_stick = { type = "Vec2" }
+
+[messages.LeftStick.fields]
+left_stick = "Vec2"
