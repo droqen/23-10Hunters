@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "00valentino",
+    "subpax/flag",
 ]
 resolver = "2"
 

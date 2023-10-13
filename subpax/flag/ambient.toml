@@ -1,0 +1,6 @@
+[package]
+id = "mdkzxmuybbc3rd7erb26sem3q43cmvce"
+name = "flag"
+version = "0.0.1"
+content = { type = "Playable" }
+ambient_version = "0.3.0"
