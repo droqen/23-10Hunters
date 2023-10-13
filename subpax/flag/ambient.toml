@@ -2,5 +2,16 @@
 id = "mdkzxmuybbc3rd7erb26sem3q43cmvce"
 name = "flag"
 version = "0.0.1"
-content = { type = "Playable" }
+content = { type = "Asset", code = true }
 ambient_version = "0.3.0"
+
+[components]
+flagpole = { type = "EntityId" } # flagpole must have translation()
+flagpole_target_offset = { type = "Vec3" } # where am i aiming, relative to flagpole?
+flagpole_arms_length = { type = "F32" } # what is the length of my connection's "arm"? min/max dist.
+
+flaglerp = { type = "F32" } # how much to lerp *per frame* toward flagpole's position
+flaglin = { type = "F32" } # units per second travelled toward flagpole's position
+flaginertia = { type = "F32" } # how much does a flag maintain its heading? default 0.0 range [0.0-1.0)
+
+flag_velocity = { type = "Vec3" } # private-ish: velocity of a flag. only used when inertia is positive, but regardless set every frame

@@ -1,0 +1,18 @@
+[package]
+id = "ubknbs4dt42dbopuzl6ql2uitnzvbtnz"
+name = "cubeline"
+description = "Draws a line between two points in 3d space by using a rotated and scaled cube."
+version = "0.0.1"
+content = { type = "Playable" }
+ambient_version = "0.3.0"
+
+[components]
+# todo - should these be replaced with 'cubeline_points'?
+cubeline_a = { type = "Vec3" }
+cubeline_b = { type = "Vec3" }
+cubeline_width = { type = "F32", description = "How wide (or thick) is the cubeline?" }
+# automatically set a/b to target's position
+cubeline_a_to_target = { type = "EntityId" }
+cubeline_b_to_target = { type = "EntityId" }
+# cubeline's "b" value is relative. not really compatible with cubeline_b_to_target.
+b_is_relative = { type = "Empty" }

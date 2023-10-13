@@ -1,7 +1,8 @@
 [workspace]
 members = [
     "00valentino",
-    "subpax/flag",
+    "demos/flagtester",
+    "subpax/flag","subpax/cubeline"
 ]
 resolver = "2"
 

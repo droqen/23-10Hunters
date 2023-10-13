@@ -1,0 +1,11 @@
+[package]
+id = "efpthbhp22vufaiwfj2l3l6nxma6ahyf"
+name = "flagtester"
+version = "0.0.1"
+content = { type = "Playable" }
+ambient_version = "0.3.0"
+
+[dependencies]
+droplet = { deployment = "6eKOGLJmxraCGhZYriCLD7" }
+cubeline = { path = "../../subpax/cubeline" }
+flag = { path = "../../subpax/flag" }
