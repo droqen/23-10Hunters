@@ -11,8 +11,9 @@ ambient_version = "0.3.0"
 cubeline_a = { type = "Vec3" }
 cubeline_b = { type = "Vec3" }
 cubeline_width = { type = "F32", description = "How wide (or thick) is the cubeline?" }
-# automatically set a/b to target's position
-cubeline_a_to_target = { type = "EntityId" }
-cubeline_b_to_target = { type = "EntityId" }
-# cubeline's "b" value is relative. not really compatible with cubeline_b_to_target.
-b_is_relative = { type = "Empty" }
+# keep it simple, stupid
+# # automatically set a/b to target's position
+# cubeline_a_to_target = { type = "EntityId" }
+# cubeline_b_to_target = { type = "EntityId" }
+# # cubeline's "b" value is relative. not really compatible with cubeline_b_to_target.
+# b_is_relative = { type = "Empty" }

@@ -36,19 +36,6 @@ pub fn main() {
     let tester_cline = Entity::new()
         .with(cube(), ())
         .with(cubeline_a(), vec3(0., 0., 0.))
-        .with(cubeline_b(), vec3(10., 0., 0.))
+        .with(cubeline_b(), vec3(0., -10., 10.))
         .spawn();
-    ambient_api::core::messages::Frame::subscribe(move |_| {
-        entity::mutate_component(tester_cline, cubeline_b(), |b| {
-            if random::<f32>() < 0.1 {
-                *b = vec3(
-                    random::<f32>() - 0.5,
-                    random::<f32>() - 0.5,
-                    random::<f32>() - 0.5,
-                ) * 20.;
-            } else {
-                *b *= 0.99;
-            }
-        });
-    });
 }
