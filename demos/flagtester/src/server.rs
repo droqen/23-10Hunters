@@ -32,10 +32,33 @@ pub fn main() {
     // make a droplet with cubeline and flags
     // todo
 
-    use packages::cubeline::components::{cubeline_a, cubeline_b};
+    use packages::cubeline::components::{cubeline_a, cubeline_b, cubeline_width};
     let tester_cline = Entity::new()
         .with(cube(), ())
-        .with(cubeline_a(), vec3(0., 0., 0.))
-        .with(cubeline_b(), vec3(0., -10., 10.))
+        .with(cubeline_a(), vec3(0., 0., 5.))
+        .with(cubeline_b(), vec3(0., 0., 0.))
+        .with(cubeline_width(), 0.1)
         .spawn();
+    let wobbler = Entity::new()
+        .with(cube(), ())
+        .with(translation(), vec3(0., 0., 0.))
+        .spawn();
+    use packages::flag::components::{flaginertia, flaglerp, flagpole};
+    let wobbler_flag = Entity::new()
+        .with(cube(), ())
+        .with(flagpole(), wobbler)
+        .with(flaglerp(), 0.1)
+        .with(flaginertia(), 0.1)
+        .spawn();
+    ambient_api::core::messages::Frame::subscribe(move |_| {
+        entity::mutate_component(wobbler, translation(), |pos| {
+            pos.x = game_time().as_secs_f32().sin() * 4.;
+            pos.y = (game_time().as_secs_f32() * 0.2).cos() * 2.;
+        });
+        entity::set_component(
+            tester_cline,
+            cubeline_b(),
+            entity::get_component(wobbler, translation()).unwrap(),
+        );
+    });
 }
