@@ -1,0 +1,11 @@
+[package]
+id = "wqja6cgswb7bjxtu3fk2fnjn5gvzvpvi"
+name = "droqspawnables"
+version = "0.0.1"
+content = { type = "Playable" }
+ambient_version = "0.3.0"
+
+[dependencies]
+tangent_rider = { deployment = "4hxwGsN0BsQKx6AtQpia9L" }
+tangent_schema = { deployment = "14jbn64hStNAf1lMtbcLMp" }
+tangent_rider_schema = { deployment = "7ao6OlBzikNjUWzmncDBtr" }

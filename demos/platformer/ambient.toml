@@ -1,0 +1,6 @@
+[package]
+id = "i37cvckuog27vwyddjdi2quz7cpatwqw"
+name = "platformer"
+version = "0.0.1"
+content = { type = "Playable" }
+ambient_version = "0.3.0"

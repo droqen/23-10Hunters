@@ -5,6 +5,7 @@ use ambient_api::{
             PerspectiveInfiniteReverseCamera, PerspectiveInfiniteReverseCameraOptional,
         },
         messages::Frame,
+        model::components::model_from_url,
         primitives::{
             components::{cube, quad},
             concepts::Sphere,
@@ -29,6 +30,7 @@ pub fn main() {
     // spawn_quad();
     // spawn_test1_simple();
     spawn_test2_orb_body();
+    // spawn_a_static_diamond();
 }
 
 fn spawn_cam() {
@@ -144,4 +146,24 @@ fn make_ball(radius: f32) -> Entity {
 
 fn pos_of(entity: EntityId) -> Vec3 {
     entity::get_component(entity, translation()).unwrap_or(Vec3::ZERO)
+}
+
+fn spawn_a_static_diamond() {
+    Transformable {
+        ..Transformable::suggested()
+    }
+    .make()
+    .with(
+        model_from_url(),
+        packages::this::assets::url("whitediamond.fbx"),
+    )
+    .spawn();
+
+    Transformable {
+        ..Transformable::suggested()
+    }
+    .make()
+    .with(cube(), ())
+    .with(translation(), vec3(2., 0., 0.))
+    .spawn();
 }
