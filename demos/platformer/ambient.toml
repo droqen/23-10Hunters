@@ -4,3 +4,19 @@ name = "platformer"
 version = "0.0.1"
 content = { type = "Playable" }
 ambient_version = "0.3.0"
+
+[components]
+spr_size = { type = "Vec2", attributes = ["Networked"] }
+spr_pos = { type = "Ivec2", attributes = ["Networked"] }
+spr_subpos = { type = "Vec2", attributes = ["Networked"] }
+spr_path = { type = "String", attributes = ["Networked"] } # this could be shortened
+spr_boxrect = { type = "Vec4", attributes = ["Networked"] }
+spr_vel = { type = "Vec2", attributes = ["Networked"] }
+spr_playercontrolled = { type = "Empty" }
+spr_z = { type = "F32", attributes = ["Networked"] }
+
+is_brick = { type = "Empty" }
+
+[messages.JumperInput.fields]
+pinx = "F32"
+pinjumppressed = "Bool"

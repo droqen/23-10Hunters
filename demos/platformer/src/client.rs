@@ -5,14 +5,55 @@ use ambient_api::{
             background_color, border_color, border_radius, border_thickness,
             size_from_background_image,
         },
+        transform::components::translation,
     },
     prelude::*,
     ui::ImageFromUrl,
 };
 use packages::this::assets;
+use packages::this::{components::*, messages::JumperInput};
+
+const PIXEL_SCALE: f32 = 3.;
 
 #[element_component]
-fn App(_hooks: &mut Hooks) -> Element {
+fn SpriteApp(hooks: &mut Hooks) -> Element {
+    // let screen_size = entity::get_component(entity::resources(), window_logical_size()).unwrap();
+    let sprs = ambient_api::element::use_query(hooks, (spr_path(), spr_pos(), spr_size(), spr_z()));
+    // let fsize = screen_size.y as f32 * 0.04;
+    Group::el(sprs.iter().map(move |(plr, (path, pos, size, z))| {
+        ImageFromUrl {
+            url: assets::url(path),
+        }
+        .el()
+        .with(translation(), (pos.as_vec2() * PIXEL_SCALE).extend(*z))
+        .with(width(), size.x * PIXEL_SCALE)
+        .with(height(), size.y * PIXEL_SCALE)
+    }))
+}
+
+#[main]
+pub fn main() {
+    SpriteApp.el().spawn_interactive();
+    // AppFromImageUIExample.el().spawn_interactive();
+    ambient_api::core::messages::Frame::subscribe(|_| {
+        let (delta, input) = input::get_delta();
+        JumperInput {
+            pinjumppressed: delta.keys.contains(&KeyCode::Space),
+            pinx: match (
+                input.keys.contains(&KeyCode::Left),
+                input.keys.contains(&KeyCode::Right),
+            ) {
+                (true, false) => -1.,
+                (false, true) => 1.,
+                _ => 0.,
+            },
+        }
+        .send_server_reliable();
+    });
+}
+
+#[element_component]
+fn AppFromImageUIExample(_hooks: &mut Hooks) -> Element {
     Group::el([FlowColumn::el([
         ImageFromUrl {
             url: assets::url("brick.png"),
@@ -47,9 +88,4 @@ fn App(_hooks: &mut Hooks) -> Element {
     ])
     .with(space_between_items(), 10.)
     .with_padding_even(STREET)])
-}
-
-#[main]
-pub fn main() {
-    App.el().spawn_interactive();
 }
