@@ -3,14 +3,6 @@ type = "Materials"
 output_decals = false
 [pipelines.importer]
 type = "Single"
-name = "brick"
-base_color = "brick.png"
-
-[[pipelines]]
-type = "Materials"
-output_decals = false
-[pipelines.importer]
-type = "Single"
 name = "brick10"
 base_color = "brick10.png"
 
@@ -19,14 +11,29 @@ type = "Materials"
 output_decals = false
 [pipelines.importer]
 type = "Single"
-name = "player"
-base_color = "player.png"
+name = "pL10"
+base_color = "pL10.png"
 
 [[pipelines]]
 type = "Materials"
 output_decals = false
 [pipelines.importer]
 type = "Single"
-name = "player10"
-base_color = "player10.png"
+name = "pLUp10"
+base_color = "pLUp10.png"
 
+[[pipelines]]
+type = "Materials"
+output_decals = false
+[pipelines.importer]
+type = "Single"
+name = "pR10"
+base_color = "pR10.png"
+
+[[pipelines]]
+type = "Materials"
+output_decals = false
+[pipelines.importer]
+type = "Single"
+name = "pRUp10"
+base_color = "pRUp10.png"

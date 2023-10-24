@@ -8,3 +8,10 @@ ambient_version = "0.3.0"
 [dependencies]
 jellybean = { path = "../../subpax/jellybean" }
 pixie = { path = "../../subpax/pixie" }
+
+[components]
+prunanim = { type = "U8" }
+pfaceleft = { type = "Bool" }
+pflorbuf = { type = "U8" }
+pjumpbuf = { type = "U8" }
+pwalljumped = { type = "I32" } # dir
