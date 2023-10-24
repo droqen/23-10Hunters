@@ -8,7 +8,7 @@ pub fn main() {
         .with(pix_sprurl(), packages::this::assets::url("player10.png"))
         .with(pix_size(), ivec2(10, 10))
         .with(pix_z(), 0)
-        .with(jellybean_pos(), ivec2(4, 8) * 10)
+        .with(jellybean_pos(), ivec2(13, 17) * 10)
         .with(jellybean_hitbox(), ivec4(3, 3, 4, 7))
         .with(jellybean_vel(), vec2(0., 0.))
         .with(jellybean_subpos(), vec2(0., 0.))
@@ -41,12 +41,12 @@ pub fn main() {
         });
     });
 
-    for tx in 0..10 {
-        for ty in 0..10 {
+    for tx in 0..26 {
+        for ty in 0..19 {
             if {
                 match ty {
-                    9 => true,
-                    8 => false,
+                    18 => true,
+                    17 => false,
                     _ => random::<f32>() < 0.357,
                 }
             } {
