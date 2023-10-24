@@ -39,8 +39,14 @@ pub fn main() {
 
     ambient_api::core::messages::Frame::subscribe(move |_| {
         let (delta, input) = input::get_delta();
-        let pin_jump = delta.keys.contains(&KeyCode::Space);
-        let pin_jumpheld = input.keys.contains(&KeyCode::Space);
+        let pin_jump = delta.keys.contains(&KeyCode::Space)
+            || delta.keys.contains(&KeyCode::Up)
+            || delta.keys.contains(&KeyCode::Z)
+            || delta.keys.contains(&KeyCode::X);
+        let pin_jumpheld = input.keys.contains(&KeyCode::Space)
+            || input.keys.contains(&KeyCode::Up)
+            || input.keys.contains(&KeyCode::Z)
+            || input.keys.contains(&KeyCode::X);
         let pin_dx = match (
             input.keys.contains(&KeyCode::Left),
             input.keys.contains(&KeyCode::Right),
@@ -78,7 +84,7 @@ pub fn main() {
 
         entity::mutate_component(playerbean, jellybean_vel(), move |vel| {
             if walljump_dir == 0 {
-                vel.x = tow(vel.x, pin_dx * 1.5, 0.1);
+                vel.x = tow(vel.x, pin_dx * 1.0, 0.1);
             } else {
                 vel.x = tow(vel.x, walljump_dir as f32 * 0.5, 0.01);
                 if vel.x.abs() <= 0.55 || vel.y > 0. {
@@ -100,14 +106,14 @@ pub fn main() {
             } else if jumpbuf > 0 {
                 if entity::get_component(playerbean, jellybean_touching_left()).unwrap_or_default()
                 {
-                    vel.x = 1.5;
+                    vel.x = 1.0;
                     vel.y = -2.; // walljump height
                     entity::add_component(playerbean, pwalljumped(), 1);
                     entity::set_component(playerbean, pjumpbuf(), 0);
                 } else if entity::get_component(playerbean, jellybean_touching_right())
                     .unwrap_or_default()
                 {
-                    vel.x = -1.5;
+                    vel.x = -1.0;
                     vel.y = -2.; // walljump height
                     entity::add_component(playerbean, pwalljumped(), -1);
                     entity::set_component(playerbean, pjumpbuf(), 0);
