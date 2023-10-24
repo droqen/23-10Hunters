@@ -26,28 +26,28 @@ fn jellybeans_move_to_collision() {
             let mut vel2: Vec2 = vel;
             let mut subpos2: Vec2 = subpos;
             subpos2 += vel2;
-            while (vel2.x > 0. && subpos2.x > 0.) || (subpos2.x >= 1.) {
+            while (subpos2.x > 0.5) {
                 if !try_move(&mut pos2, &mut subpos2, ivec2(1, 0), hitbox, &solids) {
                     vel2.x = 0.;
                     subpos2.x = 0.;
                     break;
                 }
             }
-            while (vel2.y > 0. && subpos2.y > 0.) || (subpos2.y >= 1.) {
+            while (subpos2.y > 0.5) {
                 if !try_move(&mut pos2, &mut subpos2, ivec2(0, 1), hitbox, &solids) {
                     vel2.y = 0.;
                     subpos2.y = 0.;
                     break;
                 }
             }
-            while (vel2.x < 0. && subpos2.x < 0.) || (subpos2.x <= -1.) {
+            while (subpos2.x < -0.5) {
                 if !try_move(&mut pos2, &mut subpos2, ivec2(-1, 0), hitbox, &solids) {
                     vel2.x = 0.;
                     subpos2.x = 0.;
                     break;
                 }
             }
-            while (vel2.y < 0. && subpos2.y < 0.) || (subpos2.y <= -1.) {
+            while (subpos2.y < -0.5) {
                 if !try_move(&mut pos2, &mut subpos2, ivec2(0, -1), hitbox, &solids) {
                     vel2.y = 0.;
                     subpos2.y = 0.;
@@ -57,8 +57,54 @@ fn jellybeans_move_to_collision() {
             entity::set_component_if_changed(jellybean, jellybean_pos(), pos2);
             entity::set_component_if_changed(jellybean, jellybean_vel(), vel2);
             entity::set_component_if_changed(jellybean, jellybean_subpos(), subpos2);
+
+            for (cast_component, touch_component, dir) in vec![
+                (jellybean_casts_up(), jellybean_touching_up(), ivec2(0, -1)),
+                (
+                    jellybean_casts_down(),
+                    jellybean_touching_down(),
+                    ivec2(0, 1),
+                ),
+                (
+                    jellybean_casts_left(),
+                    jellybean_touching_left(),
+                    ivec2(-1, 0),
+                ),
+                (
+                    jellybean_casts_right(),
+                    jellybean_touching_right(),
+                    ivec2(1, 0),
+                ),
+            ] {
+                if entity::has_component(jellybean, cast_component) {
+                    entity::add_component(
+                        jellybean,
+                        touch_component,
+                        !can_move(pos2, dir, hitbox, &solids),
+                    );
+                }
+            }
         }
     });
+}
+
+fn can_move(
+    my_pos: IVec2,
+    movement: IVec2,
+    my_hitbox: IVec4,
+    solids: &Vec<(EntityId, (IVec2, IVec4))>,
+) -> bool {
+    if movement.x == 0 && movement.y == 0 {
+        panic!("called try_move with movement vector 0,0");
+    } else {
+        let pos2 = my_pos + movement;
+        for (_solid, (solid_pos, solid_hitbox)) in solids {
+            if test_overlap(pos2, my_hitbox, *solid_pos, *solid_hitbox) {
+                return false; // nope, a solid in my way
+            }
+        }
+        true // free space
+    }
 }
 
 fn try_move(
