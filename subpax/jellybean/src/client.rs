@@ -26,7 +26,6 @@ fn jellybeans_move_to_collision() {
             let mut vel2: Vec2 = vel;
             let mut subpos2: Vec2 = subpos;
             subpos2 += vel2;
-            println!("Moving? {vel2}");
             while (vel2.x > 0. && subpos2.x > 0.) || (subpos2.x >= 1.) {
                 if !try_move(&mut pos2, &mut subpos2, ivec2(1, 0), hitbox, &solids) {
                     vel2.x = 0.;
@@ -66,7 +65,7 @@ fn try_move(
     solids: &Vec<(EntityId, (IVec2, IVec4))>,
 ) -> bool {
     if movement.x == 0 && movement.y == 0 {
-        panic!("I don't like this");
+        panic!("called try_move with movement vector 0,0");
     } else {
         *my_pos += movement;
         *my_subpos -= movement.as_vec2();
