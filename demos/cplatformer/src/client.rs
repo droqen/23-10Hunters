@@ -141,8 +141,8 @@ pub fn main() {
         );
     });
 
-    for tx in 0..26 {
-        for ty in 0..19 {
+    for tx in 8..20 {
+        for ty in 3..19 {
             if {
                 match ty {
                     18 => true,
