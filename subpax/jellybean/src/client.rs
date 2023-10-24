@@ -29,24 +29,28 @@ fn jellybeans_move_to_collision() {
             while (vel2.x > 0. && subpos2.x > 0.) || (subpos2.x >= 1.) {
                 if !try_move(&mut pos2, &mut subpos2, ivec2(1, 0), hitbox, &solids) {
                     vel2.x = 0.;
+                    subpos2.x = 0.;
                     break;
                 }
             }
             while (vel2.y > 0. && subpos2.y > 0.) || (subpos2.y >= 1.) {
                 if !try_move(&mut pos2, &mut subpos2, ivec2(0, 1), hitbox, &solids) {
                     vel2.y = 0.;
+                    subpos2.y = 0.;
                     break;
                 }
             }
             while (vel2.x < 0. && subpos2.x < 0.) || (subpos2.x <= -1.) {
                 if !try_move(&mut pos2, &mut subpos2, ivec2(-1, 0), hitbox, &solids) {
                     vel2.x = 0.;
+                    subpos2.x = 0.;
                     break;
                 }
             }
             while (vel2.y < 0. && subpos2.y < 0.) || (subpos2.y <= -1.) {
                 if !try_move(&mut pos2, &mut subpos2, ivec2(0, -1), hitbox, &solids) {
                     vel2.y = 0.;
+                    subpos2.y = 0.;
                     break;
                 }
             }
