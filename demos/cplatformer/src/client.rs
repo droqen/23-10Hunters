@@ -35,6 +35,8 @@ pub fn main() {
     let PLAYER_SPR_L0 = packages::this::assets::url("pL10.png");
     let PLAYER_SPR_L1 = packages::this::assets::url("pLUp10.png");
 
+    let playerbean_query = query(()).requires(pflorbuf()).build();
+
     ambient_api::core::messages::Frame::subscribe(move |_| {
         let (delta, input) = input::get_delta();
         let pin_jump = delta.keys.contains(&KeyCode::Space);
@@ -139,10 +141,43 @@ pub fn main() {
                 (true, false) => PLAYER_SPR_R1.clone(),
             },
         );
+
+        if entity::get_component(playerbean, jellybean_pos())
+            .unwrap()
+            .y
+            > 200
+        {
+            reload_world(playerbean);
+        }
     });
 
-    for tx in 8..20 {
-        for ty in 3..19 {
+    reload_world(playerbean.clone());
+}
+
+fn tow(a: f32, b: f32, rate: f32) -> f32 {
+    if a + rate < b {
+        a + rate
+    } else if a - rate > b {
+        a - rate
+    } else {
+        b
+    }
+}
+
+fn reload_world(playerbean: EntityId) {
+    entity::add_component(playerbean, jellybean_pos(), ivec2(13, 17) * 10);
+    entity::add_component(playerbean, jellybean_vel(), vec2(0., 0.));
+    for (solid_block, _) in query(()).requires(jellybean_is_solid()).build().evaluate() {
+        entity::despawn(solid_block);
+    }
+    let mut world_width = random::<i32>().abs() % 12 + 7;
+    let mut world_height = random::<i32>().abs() % 10 + 7;
+    if random::<f32>() < 0.5 {
+        world_width = 24;
+        world_height = 18;
+    }
+    for tx in 13 - world_width / 2..13 + world_width / 2 {
+        for ty in 19 - world_height..19 {
             if {
                 match ty {
                     18 => true,
@@ -160,15 +195,5 @@ pub fn main() {
                     .spawn();
             }
         }
-    }
-}
-
-fn tow(a: f32, b: f32, rate: f32) -> f32 {
-    if a + rate < b {
-        a + rate
-    } else if a - rate > b {
-        a - rate
-    } else {
-        b
     }
 }
