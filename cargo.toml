@@ -1,8 +1,8 @@
 [workspace]
 members = [
     "00valentino",
-    "demos/flagtester", "demos/platformer",
-    "subpax/flag","subpax/cubeline",
+    "demos/flagtester", "demos/platformer", "demos/cplatformer",
+    "subpax/flag","subpax/cubeline","subpax/jellybean","subpax/pixie",
     "rider_mods/droqspawnables",
 ]
 resolver = "2"

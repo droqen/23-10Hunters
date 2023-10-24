@@ -1,0 +1,32 @@
+[[pipelines]]
+type = "Materials"
+output_decals = false
+[pipelines.importer]
+type = "Single"
+name = "brick"
+base_color = "brick.png"
+
+[[pipelines]]
+type = "Materials"
+output_decals = false
+[pipelines.importer]
+type = "Single"
+name = "brick10"
+base_color = "brick10.png"
+
+[[pipelines]]
+type = "Materials"
+output_decals = false
+[pipelines.importer]
+type = "Single"
+name = "player"
+base_color = "player.png"
+
+[[pipelines]]
+type = "Materials"
+output_decals = false
+[pipelines.importer]
+type = "Single"
+name = "player10"
+base_color = "player10.png"
+

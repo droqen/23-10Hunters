@@ -1,0 +1,10 @@
+[package]
+id = "haz6y7ohisn7itfzgt5ydo22n2gr7oss"
+name = "cplatformer"
+version = "0.0.1"
+content = { type = "Playable" }
+ambient_version = "0.3.0"
+
+[dependencies]
+jellybean = { path = "../../subpax/jellybean" }
+pixie = { path = "../../subpax/pixie" }
