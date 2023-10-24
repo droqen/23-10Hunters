@@ -41,7 +41,7 @@ pub fn main() {
 #[element_component]
 fn SpriteApp(hooks: &mut Hooks) -> Element {
     // let screen_size = entity::get_component(entity::resources(), window_logical_size()).unwrap();
-    let global_pixie_scale: i32 = 2;
+    let global_pixie_scale: i32 = 3;
     let global_pixie_offset: IVec2 = ivec2(0, 0);
     // let (_, (global_pixie_scale, global_pixie_offset)) =
     //     ambient_api::element::use_query(hooks, (pixg_scale(), pixg_offset()))
@@ -57,7 +57,7 @@ fn SpriteApp(hooks: &mut Hooks) -> Element {
         .el()
         .with(
             translation(),
-            (*place * global_pixie_scale)
+            (*place * global_pixie_scale + global_pixie_offset)
                 .as_vec2()
                 .extend(*z as f32 * 0.002),
         )
