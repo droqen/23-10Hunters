@@ -1,0 +1,30 @@
+[package]
+id = "pxx6ml76fcnww2naqxdwx2r2hiw76agr"
+name = "jellybean"
+version = "0.0.1"
+content = { type = "Playable" }
+ambient_version = "0.3.0"
+
+[components]
+jellybean_pos = { type = "Ivec2" }
+jellybean_hitbox = { type = "Ivec4" } # aabb
+jellybean_pixie = { type = "EntityId" } # update pixie position when my position changes
+
+# nonmoving jellybean (usually) - other jellybeans collide with me
+jellybean_is_solid = { type = "Empty" }
+
+# moving jellybean
+jellybean_vel = { type = "Vec2" }
+jellybean_subpos = { type = "Vec2" }
+
+# pixcasts
+jellybean_casts_down = { type = "Empty" }
+jellybean_casts_right = { type = "Empty" }
+jellybean_casts_left = { type = "Empty" }
+jellybean_casts_up = { type = "Empty" }
+
+# pixcast results
+jellybean_touching_down = { type = "Bool" }
+jellybean_touching_right = { type = "Bool" }
+jellybean_touching_left = { type = "Bool" }
+jellybean_touching_up = { type = "Bool" }
