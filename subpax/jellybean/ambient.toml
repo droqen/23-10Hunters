@@ -8,7 +8,6 @@ ambient_version = "0.3.0"
 [components]
 jellybean_pos = { type = "Ivec2" }
 jellybean_hitbox = { type = "Ivec4" } # aabb
-jellybean_pixie = { type = "EntityId" } # update pixie position when my position changes
 
 # nonmoving jellybean (usually) - other jellybeans collide with me
 jellybean_is_solid = { type = "Empty" }

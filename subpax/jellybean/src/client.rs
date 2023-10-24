@@ -3,7 +3,9 @@ use ambient_api::prelude::*;
 use packages::this::components::*;
 
 #[main]
-pub fn main() {}
+pub fn main() {
+    jellybeans_move_to_collision();
+}
 
 fn jellybeans_move_to_collision() {
     let jellybeans_query = query((
@@ -24,37 +26,41 @@ fn jellybeans_move_to_collision() {
             let mut vel2: Vec2 = vel;
             let mut subpos2: Vec2 = subpos;
             subpos2 += vel2;
+            println!("Moving? {vel2}");
             while (vel2.x > 0. && subpos2.x > 0.) || (subpos2.x >= 1.) {
-                if !try_move(pos2, subpos2, ivec2(1, 0), hitbox, &solids) {
+                if !try_move(&mut pos2, &mut subpos2, ivec2(1, 0), hitbox, &solids) {
                     vel2.x = 0.;
                     break;
                 }
             }
             while (vel2.y > 0. && subpos2.y > 0.) || (subpos2.y >= 1.) {
-                if !try_move(pos2, subpos2, ivec2(0, 1), hitbox, &solids) {
+                if !try_move(&mut pos2, &mut subpos2, ivec2(0, 1), hitbox, &solids) {
                     vel2.x = 0.;
                     break;
                 }
             }
             while (vel2.x < 0. && subpos2.x < 0.) || (subpos2.x <= -1.) {
-                if !try_move(pos2, subpos2, ivec2(-1, 0), hitbox, &solids) {
+                if !try_move(&mut pos2, &mut subpos2, ivec2(-1, 0), hitbox, &solids) {
                     vel2.x = 0.;
                     break;
                 }
             }
             while (vel2.y < 0. && subpos2.y < 0.) || (subpos2.y <= -1.) {
-                if !try_move(pos2, subpos2, ivec2(0, -1), hitbox, &solids) {
+                if !try_move(&mut pos2, &mut subpos2, ivec2(0, -1), hitbox, &solids) {
                     vel2.x = 0.;
                     break;
                 }
             }
+            entity::set_component_if_changed(jellybean, jellybean_pos(), pos2);
+            entity::set_component_if_changed(jellybean, jellybean_vel(), vel2);
+            entity::set_component_if_changed(jellybean, jellybean_subpos(), subpos2);
         }
     });
 }
 
 fn try_move(
-    mut my_pos: IVec2,
-    mut my_subpos: Vec2,
+    my_pos: &mut IVec2,
+    my_subpos: &mut Vec2,
     movement: IVec2,
     my_hitbox: IVec4,
     solids: &Vec<(EntityId, (IVec2, IVec4))>,
@@ -62,13 +68,13 @@ fn try_move(
     if movement.x == 0 && movement.y == 0 {
         panic!("I don't like this");
     } else {
-        my_pos += movement;
-        my_subpos -= movement.as_vec2();
+        *my_pos += movement;
+        *my_subpos -= movement.as_vec2();
         for (_solid, (solid_pos, solid_hitbox)) in solids {
-            if test_overlap(my_pos, my_hitbox, *solid_pos, *solid_hitbox) {
+            if test_overlap(*my_pos, my_hitbox, *solid_pos, *solid_hitbox) {
                 // undo move
-                my_pos -= movement;
-                my_subpos += movement.as_vec2();
+                *my_pos -= movement;
+                *my_subpos += movement.as_vec2();
                 return false;
             }
         }
