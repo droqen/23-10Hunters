@@ -1,8 +1,9 @@
 [package]
 id = "pxx6ml76fcnww2naqxdwx2r2hiw76agr"
 name = "jellybean"
+description = "Rudimentary logic for 2d AABB movement"
 version = "0.0.1"
-content = { type = "Playable" }
+content = { type = "Asset", code = true }
 ambient_version = "0.3.0"
 
 [components]

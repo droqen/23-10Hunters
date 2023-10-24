@@ -1,13 +1,13 @@
 [package]
 id = "haz6y7ohisn7itfzgt5ydo22n2gr7oss"
-name = "cplatformer"
+name = "Clientside-Only Platformer (2D via UI)"
 version = "0.0.1"
 content = { type = "Playable" }
 ambient_version = "0.3.0"
 
 [dependencies]
-jellybean = { path = "../../subpax/jellybean" }
-pixie = { path = "../../subpax/pixie" }
+jellybean = { path = "../../subpax/jellybean" , deployment = "7Lab4cQjHhoXAE0P7jR8PO" }
+pixie = { path = "../../subpax/pixie" , deployment = "2aBLDQQRgbIcOABcU6KLmJ" }
 
 [components]
 prunanim = { type = "U8" }

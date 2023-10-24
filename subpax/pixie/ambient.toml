@@ -1,8 +1,9 @@
 [package]
 id = "ussi7jzoshjcconoitqchnzq62ibwfjv"
 name = "pixie"
+description = "Naive rendering of images to UI"
 version = "0.0.1"
-content = { type = "Playable" }
+content = { type = "Asset", code = true }
 ambient_version = "0.3.0"
 
 [components]
@@ -10,5 +11,5 @@ pix_z = { type = "U8" } # 0 to 255 - 0 is on top
 pix_sprurl = { type = "String" }
 pix_place = { type = "Ivec2" }
 pix_size = { type = "Ivec2" }
-pixg_scale = { type = "I32" } # default 1 for 1x
-pixg_offset = { type = "Ivec2" } # default 0, 0
+pixg_scale = { type = "I32" } # default 1 for 1x # NOTE - NON FUNCITONAL
+pixg_offset = { type = "Ivec2" } # default 0, 0 # NOTE - NON FUNCTIONAL
